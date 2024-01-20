@@ -38,10 +38,9 @@ class SquareArray[T](val sz: Int)(implicit val aryTraits: ArrayTraits[T]) {
   override def toString = s"SquareArray($sz, ${ary.mkString("[", ",", "]")})"
 }
 
-class SquareArray2[T](val sz: Int)(implicit ct: ClassTag[T]) {
+class SquareArray2[T : ClassTag](val sz: Int) {
   val ary : Array[T] = Array.ofDim[T](sz)
 }
-
 
 object App {
   def main(args: Array[String]): Unit = {
