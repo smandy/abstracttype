@@ -15,16 +15,18 @@ trait ArrayTraits[T] {
   def makeContainer(sz: Int): AryType
 }
 
-implicit object IntArrayTraits extends ArrayTraits[Int] {
-  override type AryType = Array[Int]
+object ArrayTraits {
+  implicit object IntArrayTraits extends ArrayTraits[Int] {
+    override type AryType = Array[Int]
 
-  override def makeContainer(sz: Int) = new Array[Int](sz)
-}
+    override def makeContainer(sz: Int) = new Array[Int](sz)
+  }
 
-implicit object BooleanArrayTraits extends ArrayTraits[Boolean] {
-  override type AryType = Array[Boolean]
+  implicit object BooleanArrayTraits extends ArrayTraits[Boolean] {
+    override type AryType = Array[Boolean]
 
-  override def makeContainer(sz: Int) = new Array[Boolean](sz)
+    override def makeContainer(sz: Int) = new Array[Boolean](sz)
+  }
 }
 
 
