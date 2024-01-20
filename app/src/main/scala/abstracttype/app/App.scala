@@ -21,9 +21,9 @@ implicit object IntArrayTraits extends ArrayTraits[Int] {
 }
 
 implicit object BooleanArrayTraits extends ArrayTraits[Boolean] {
-  override type AryType = Array[Int]
+  override type AryType = Array[Boolean]
 
-  override def makeContainer(sz: Int) = new Array[Int](sz)
+  override def makeContainer(sz: Int) = new Array[Boolean](sz)
 }
 
 
@@ -55,11 +55,16 @@ object App {
 
     println(x2.zero)
 
-    val ary2 = SquareArray2[Int](2)
+    val ary1 = SquareArray[Int](2)
+    println(ary1.ary)
 
-    println(ary2.ary.toList)
+    val ary2 = SquareArray[Boolean](2)
+    println(ary2.ary)
 
-    val ary3 = SquareArray2[Boolean](3)
-    println(ary3.ary.toList)
+    val sary2 = SquareArray2[Int](2)
+    println(sary2.ary.toList)
+
+    val sary3 = SquareArray2[Boolean](3)
+    println(sary3.ary.toList)
   }
 }
