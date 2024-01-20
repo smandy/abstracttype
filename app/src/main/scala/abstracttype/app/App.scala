@@ -9,7 +9,8 @@ import org.apache.commons.text.WordUtils
 import scala.reflect.ClassTag
 
 trait ArrayTraits[T] {
-  type AryType
+  // Abstract type AryType which is iterable
+  type AryType <: Array[T]
 
   def makeContainer(sz: Int): AryType
 }
@@ -28,10 +29,11 @@ implicit object BooleanArrayTraits extends ArrayTraits[Boolean] {
 
 
 class SquareArray[T](val sz: Int)(implicit val aryTraits: ArrayTraits[T]) {
-
   import aryTraits._
 
   val ary: AryType = makeContainer(sz)
+
+  override def toString = s"SquareArray($sz, ${ary.mkString("[", ",", "]")})"
 }
 
 class SquareArray2[T](val sz: Int)(implicit ct: ClassTag[T]) {
@@ -56,10 +58,10 @@ object App {
     println(x2.zero)
 
     val ary1 = SquareArray[Int](2)
-    println(ary1.ary)
+    println(ary1)
 
     val ary2 = SquareArray[Boolean](2)
-    println(ary2.ary)
+    println(ary2)
 
     val sary2 = SquareArray2[Int](2)
     println(sary2.ary.toList)
